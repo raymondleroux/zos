@@ -1,0 +1,19 @@
+//UNZIP    EXEC PGM=GIMUNZIP,REGION=0M,PARM='HASH=NO'                
+//SYSUT3   DD UNIT=SYSALLDA,SPACE=(CYL,(10,10))                      
+//SYSUT4   DD UNIT=SYSALLDA,SPACE=(CYL,(15,5))                       
+//*SMPJHOME DD PATH='/usr/lpp/java/J1.4/'           <===NOTE 2       
+//*SMPCPATH DD PATH='/usr/lpp/smp/classes/'         <===NOTE 2       
+//SMPOUT   DD SYSOUT=*                                               
+//SYSPRINT DD SYSOUT=*                                               
+//SMPDIR   DD PATH='/u/recprod/FILEMNGR/SMPRELF',   <===NOTE 3       
+//*SMPDIR   DD PATH='/u/smpe/smpnts/STP63197/SMPRELF/',   <===NOTE 3 
+//            PATHDISP=KEEP                                          
+//SYSIN    DD *                                                      
+<GIMUNZIP>                                                           
+<ARCHDEF                                                             
+name="CBCACHE.IBM.HVWR190.F2.pax.Z"                                  
+volume="dlib15"                                                      
+newname="SYS019.ADFZCC.V190.INSTALL">                                
+</ARCHDEF>                                                           
+</GIMUNZIP>                                                          
+/*                                                                   
