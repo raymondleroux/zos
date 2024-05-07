@@ -1,0 +1,34 @@
+/* REXX */                                                    
+/*PRO003.SAVXXXP.REXX(CCPULONG) */                            
+ISFPREFIX = "*";                                              
+ISFOWNER  = "*";                                              
+                                                              
+RC_ISFCALLS = ISFCALLS('ON');                                 
+IF RC_ISFCALLS <> 0 THEN;                                     
+ DO;                                                          
+  SAY "ERREUR INIT - D{MARRAGE SERVICE ISPF IMPOSSIBLE...";   
+  EXIT 8;                                                     
+ END;                                                         
+                                                              
+ADDRESS SDSF;                                                 
+"ISFEXEC DA ";                                                
+IF RC <> 0 THEN;                                              
+ DO;                                                          
+  MSG_EXIT = "ERREUR SDSF - NIVEAU PANEL...";                 
+  CALL SORTIE 8;                                              
+ END;                                                                  
+                                                                       
+SAY "JOBNAME  JOBID    CPU%  CPU (S)"                                  
+SAY "-------- -------- ----- --------"                                 
+DO I = 1 TO ISFROWS;                                                   
+ IF CPU.I < 1800 THEN;                                                 
+  ALERTE = '-- OK';                                                    
+ ELSE;                                                                 
+  ALERTE = '-- ATTENTION !!!';                                         
+ SAY RIGHT(JNAME.I,8) RIGHT(JOBID.I,8) RIGHT(CPUPR.I,5) RIGHT(CPU.I,8),
+     ALERTE;                                                           
+END;                                                                   
+                                                                       
+RC_ISFCALLS = ISFCALLS('OFF');                                         
+                                                                       
+EXIT 0;                                                                
